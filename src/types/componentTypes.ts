@@ -18,3 +18,11 @@ export type ErrorBannerProps = {
     message: string;
     onRetry?: () => void;
 };
+
+export type ProductsFiltersProps = {
+    q: string;
+    category: string;
+    categories: string[];
+    onQueryChange: (value: string) => void;
+    onCategoryChange: (value: string) => void;
+};
