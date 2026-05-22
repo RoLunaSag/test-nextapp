@@ -1,4 +1,4 @@
-import { Product } from "@/models/prodcut";
+import { Product } from "@/models/product";
 import { CartItem } from "@/models/cart";
 
 export type ProductCardProps = {

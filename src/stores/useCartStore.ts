@@ -2,7 +2,7 @@
 
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import type { Product } from '@/models/prodcut';
+import type { Product } from '@/models/product';
 import type { CartItem } from '@/models/cart';
 
 type CartState = {

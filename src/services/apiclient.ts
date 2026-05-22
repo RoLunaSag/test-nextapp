@@ -1,4 +1,4 @@
-import type { Product, ProductList } from '@/models/prodcut';
+import type { Product, ProductList } from '@/models/product';
 
 const BASE_URL = 'https://fakestoreapi.com';
 

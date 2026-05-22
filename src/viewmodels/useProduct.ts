@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { fetchProduct } from '@/services/apiclient';
-import type { Product } from '@/models/prodcut';
+import type { Product } from '@/models/product';
 
 export function useProduct(id: string) {
     const [product, setProduct] = useState<Product | null>(null);
