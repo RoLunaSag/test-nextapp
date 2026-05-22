@@ -4,17 +4,19 @@ import { use } from 'react';
 import Image from 'next/image';
 import Navbar from '@/components/Navbar';
 import { useProduct } from '@/viewmodels/useProduct';
+import { useCartStore } from '@/stores/useCartStore';
 
 export default function ProductPage({ params }: { params: Promise<{ id: string }> }) {
     const { id } = use(params);
     const { product, loading, error } = useProduct(id);
+    const addItem = useCartStore((s) => s.addItem);
 
     return (
         <div className="bg-pink-800 min-h-screen">
             <Navbar />
             <div className="flex justify-center items-center p-8">
-                {loading && <p>Cargando...</p>}
-                {error && <p>Error: {error}</p>}
+                {loading && <p className="text-white">Cargando...</p>}
+                {error && <p className="text-white">Error: {error}</p>}
                 {product && (
                     <div className="flex-row border-2 border-pink-200 rounded-lg p-4 m-4 bg-amber-50 max-w-xl">
                         <div className="flex justify-center items-center mb-4">
@@ -29,6 +31,12 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
                         <p className="text-lg">${product.price}</p>
                         <p className="text-sm text-gray-700">{product.category}</p>
                         <p className="mt-2">{product.description}</p>
+                        <button
+                            onClick={() => addItem(product)}
+                            className="mt-4 w-full bg-pink-600 text-white py-2 rounded hover:bg-pink-700"
+                        >
+                            Agregar al carrito
+                        </button>
                     </div>
                 )}
             </div>

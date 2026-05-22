@@ -23,7 +23,7 @@ export default function ProductCard({ product, onClick, onAddToCart }: ProductCa
                     }}
                     className="mt-4 w-full bg-pink-600 text-white py-2 rounded hover:bg-pink-700"
                 >
-                    Add to cart
+                    Agregar al carrito
                 </button>
             )}
         </div>

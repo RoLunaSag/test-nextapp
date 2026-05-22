@@ -17,17 +17,17 @@ export default function Navbar() {
             <ul className="flex space-x-4 items-center">
                 <li>
                     <Link href="/" className="text-white hover:text-gray-300">
-                        Home
+                        Inicio
                     </Link>
                 </li>
                 <li>
                     <Link href="/products" className="text-white hover:text-gray-300">
-                        Products
+                        Productos
                     </Link>
                 </li>
                 <li className="ml-auto">
                     <Link href="/cart" className="text-white hover:text-gray-300">
-                        🛒 Cart ({hydrated ? count : 0})
+                        🛒 Carrito ({hydrated ? count : 0})
                     </Link>
                 </li>
             </ul>
