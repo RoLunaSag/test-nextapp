@@ -3,21 +3,25 @@
 import { use } from 'react';
 import Image from 'next/image';
 import Navbar from '@/components/Navbar';
+import ProductDetailSkeleton from '@/components/ProductDetailSkeleton';
+import ErrorBanner from '@/components/ErrorBanner';
 import { useProduct } from '@/viewmodels/useProduct';
 import { useCartStore } from '@/stores/useCartStore';
 
 export default function ProductPage({ params }: { params: Promise<{ id: string }> }) {
     const { id } = use(params);
-    const { product, loading, error } = useProduct(id);
+    const { product, loading, error, refetch } = useProduct(id);
     const addItem = useCartStore((s) => s.addItem);
 
     return (
         <div className="bg-pink-800 min-h-screen">
             <Navbar />
             <div className="flex justify-center items-center p-8">
-                {loading && <p className="text-white">Cargando...</p>}
-                {error && <p className="text-white">Error: {error}</p>}
-                {product && (
+                {error && <ErrorBanner message={error} onRetry={refetch} />}
+
+                {loading && !error && <ProductDetailSkeleton />}
+
+                {!loading && !error && product && (
                     <div className="flex-row border-2 border-pink-200 rounded-lg p-4 m-4 bg-amber-50 max-w-xl">
                         <div className="flex justify-center items-center mb-4">
                             <Image
