@@ -1,16 +1,9 @@
-import { ProductList } from '@/models/prodcut'
-import type { InferGetStaticPropsType, GetStaticProps } from 'next'
+import type { ProductList } from '@/models/prodcut';
 
-export const getStaticProps = (async () => {
-    const res = await fetch('https://fakestoreapi.com/products')
-    const repo = await res.json()
-    return { props: { repo } }
-}) satisfies GetStaticProps<{
-    repo: ProductList
-}>
+const BASE_URL = 'https://fakestoreapi.com';
 
-export default function Page({
-    repo,
-}: InferGetStaticPropsType<typeof getStaticProps>) {
-    return repo.stargazers_count
+export async function fetchProducts(): Promise<ProductList> {
+    const res = await fetch(`${BASE_URL}/products`);
+    if (!res.ok) throw new Error('Failed to fetch products');
+    return res.json();
 }
