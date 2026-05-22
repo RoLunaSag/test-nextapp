@@ -1,4 +1,4 @@
-import { ProductList } from '@/src/types/prodcut'
+import { ProductList } from '@/models/prodcut'
 import type { InferGetStaticPropsType, GetStaticProps } from 'next'
 
 export const getStaticProps = (async () => {
