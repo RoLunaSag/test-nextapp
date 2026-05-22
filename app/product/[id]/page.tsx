@@ -22,7 +22,7 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
                 {loading && !error && <ProductDetailSkeleton />}
 
                 {!loading && !error && product && (
-                    <div className="flex-row border-2 border-pink-200 rounded-lg p-4 m-4 bg-amber-50 max-w-xl">
+                    <div className="flex-row border-2 border-gray-800 rounded-lg p-4 m-4 bg-amber-50 max-w-xl">
                         <div className="flex justify-center items-center mb-4">
                             <Image
                                 src={product.image}
@@ -31,10 +31,16 @@ export default function ProductPage({ params }: { params: Promise<{ id: string }
                                 height={300}
                             />
                         </div>
-                        <h1 className="text-2xl font-bold">{product.title}</h1>
-                        <p className="text-lg">${product.price}</p>
+                        <h1 className="text-2xl font-bold text-gray-800 bg-gray-100 rounded-md p-2">{product.title}</h1>
+                        <p className="text-lg text-red-800 font-bold mt-4 mb-4 ">${product.price}</p>
                         <p className="text-sm text-gray-700">{product.category}</p>
-                        <p className="mt-2">{product.description}</p>
+                        <p className=" text-gray-600 mt-4 mb-4">{product.description}</p>
+                        <div className="flex items-center justify-between mt-1">
+                            <p className="text-sm text-yellow-600 mt-4 mb-4">
+                                ★ {product.rating.rate.toFixed(1)}
+                                <span className="text-gray-500">({product.rating.count})</span>
+                            </p>
+                        </div>
                         <button
                             onClick={() => addItem(product)}
                             className="mt-4 w-full bg-pink-600 text-white py-2 rounded hover:bg-pink-700"

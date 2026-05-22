@@ -16,13 +16,13 @@ export default function CartPage() {
         <div className="bg-pink-800 min-h-screen">
             <Navbar />
             <div className="max-w-3xl mx-auto p-6 bg-amber-50 mt-6 rounded-lg">
-                <h1 className="text-3xl font-bold mb-6">Tu carrito</h1>
+                <h1 className="text-3xl font-bold mb-6 text-gray-800">Tu carrito</h1>
 
                 {!hydrated ? (
                     <p>Cargando carrito...</p>
                 ) : isEmpty ? (
                     <div>
-                        <p>Tu carrito está vacío.</p>
+                        <p className='text-gray-800'>Tu carrito está vacío.</p>
                         <Link
                             href="/"
                             className="text-pink-700 underline mt-4 inline-block"
@@ -49,7 +49,7 @@ export default function CartPage() {
                             >
                                 Vaciar carrito
                             </button>
-                            <div className="text-2xl font-bold">
+                            <div className="text-2xl font-bold text-pink-700">
                                 Total: ${total.toFixed(2)}
                             </div>
                         </div>
