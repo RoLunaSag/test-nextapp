@@ -4,31 +4,31 @@ import { useRouter } from 'next/navigation';
 import ProductCard from '@/components/ProductCard';
 import Navbar from '@/components/Navbar';
 import { useProductList } from '@/viewmodels/useProductList';
+import { useCartStore } from '@/stores/useCartStore';
 
 export default function Home() {
   const { products, loading, error } = useProductList();
   const router = useRouter();
+  const addItem = useCartStore((s) => s.addItem);
 
   return (
-    <div className="bg-pink-800">
+    <div className="bg-pink-800 min-h-screen">
       <Navbar />
-      <div className="flex justify-center items-center h-2">
-        <h1 className="text-2xl">Home</h1>
+      <div className="flex justify-center items-center p-4">
+        <h1 className="text-2xl text-white">Home</h1>
       </div>
-      <li className="text-2x1">Lista de productos</li>
 
-      {loading && <p>Cargando...</p>}
-      {error && <p>Error: {error}</p>}
+      {loading && <p className="text-white text-center">Cargando...</p>}
+      {error && <p className="text-white text-center">Error: {error}</p>}
 
       <div className="flex flex-wrap justify-center items-center gap-2">
         {products.map((product) => (
-          <button
+          <ProductCard
             key={product.id}
-            className="w-full"
+            product={product}
             onClick={() => router.push(`/product/${product.id}`)}
-          >
-            <ProductCard product={product} />
-          </button>
+            onAddToCart={() => addItem(product)}
+          />
         ))}
       </div>
     </div>

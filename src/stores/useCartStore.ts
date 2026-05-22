@@ -40,6 +40,5 @@ export const useCartStore = create<CartState>()(
     )
 );
 
-// Selector derivado: total de unidades en el carrito.
 export const useCartCount = () =>
     useCartStore((s) => s.items.reduce((n, i) => n + i.quantity, 0));
