@@ -1,8 +1,8 @@
 'use client';
 import Image from 'next/image'
-import { Product } from '@/types/prodcut';
+import { Product } from '@/models/prodcut'
 
-export default function Item({ product }: { product: Product }) {
+export default function ProductCard({ product }: { product: Product }) {
     console.log(product)
     return (
         <div className='flex-row border-2 border-gray-300 rounded-lg p-4 m-4'>
