@@ -1,10 +1,10 @@
 'use client';
 
-import Item from "@/components/item";
-import { getStaticProps } from "@/services/apiclient";
-import { Product } from "@/types/prodcut";
+import Item from "@/src/components/item";
+import { getStaticProps } from "@/src/services/apiclient";
+import { Product } from "@/src/types/prodcut";
 import { useEffect, useState } from "react";
-import Navbar from "@/components/navbar";
+import Navbar from "@/src/components/navbar";
 import { useRouter } from "next/router";
 
 export default function Home() {
