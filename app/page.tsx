@@ -5,7 +5,6 @@ export default function Home() {
   return (
     <div className="bg-pink-800 min-h-screen">
       <Navbar />
-
       <section className="max-w-4xl mx-auto px-6 py-24 text-center text-white">
         <h1 className="text-5xl md:text-6xl font-bold mb-6">
           Bienvenido a lp-web
