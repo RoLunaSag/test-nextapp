@@ -2,7 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 import ProductCard from '@/components/ProductCard';
-import Navbar from '@/components/navbar';
+import Navbar from '@/components/Navbar';
 import { useProductList } from '@/viewmodels/useProductList';
 
 export default function Home() {
