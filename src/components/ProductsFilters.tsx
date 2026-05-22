@@ -1,13 +1,13 @@
 'use client';
 
 import type { ProductsFiltersProps } from '@/types/componentTypes';
+import type { SortOption } from '@/viewmodels/useFilteredProducts';
 
 export default function ProductsFilters({
     q,
-    category,
-    categories,
+    sort,
     onQueryChange,
-    onCategoryChange,
+    onSortChange,
 }: ProductsFiltersProps) {
     return (
         <div className="flex flex-col sm:flex-row gap-3 max-w-3xl mx-auto px-4 mb-6">
@@ -19,16 +19,15 @@ export default function ProductsFilters({
                 className="flex-1 px-4 py-2 rounded border border-gray-300 bg-white text-gray-900"
             />
             <select
-                value={category}
-                onChange={(e) => onCategoryChange(e.target.value)}
+                value={sort}
+                onChange={(e) => onSortChange(e.target.value as SortOption)}
                 className="px-4 py-2 rounded border border-gray-300 bg-white text-gray-900"
             >
-                <option value="">Todas las categorías</option>
-                {categories.map((c) => (
-                    <option key={c} value={c}>
-                        {c}
-                    </option>
-                ))}
+                <option value="">Ordenar por...</option>
+                <option value="price-asc">Precio: menor a mayor</option>
+                <option value="price-desc">Precio: mayor a menor</option>
+                <option value="rating-asc">Rating: menor a mayor</option>
+                <option value="rating-desc">Rating: mayor a menor</option>
             </select>
         </div>
     );

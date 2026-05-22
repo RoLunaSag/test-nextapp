@@ -1,5 +1,6 @@
 import { Product } from "@/models/product";
 import { CartItem } from "@/models/cart";
+import type { SortOption } from "@/viewmodels/useFilteredProducts";
 
 export type ProductCardProps = {
     product: Product;
@@ -19,10 +20,10 @@ export type ErrorBannerProps = {
     onRetry?: () => void;
 };
 
+
 export type ProductsFiltersProps = {
     q: string;
-    category: string;
-    categories: string[];
+    sort: SortOption;
     onQueryChange: (value: string) => void;
-    onCategoryChange: (value: string) => void;
+    onSortChange: (value: SortOption) => void;
 };

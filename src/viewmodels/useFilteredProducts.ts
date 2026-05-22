@@ -3,6 +3,14 @@
 import { useCallback, useMemo } from 'react';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useProductList } from './useProductList';
+import type { ProductList } from '@/models/product';
+
+export type SortOption =
+    | ''
+    | 'price-asc'
+    | 'price-desc'
+    | 'rating-asc'
+    | 'rating-desc';
 
 export function useFilteredProducts() {
     const { products, loading, error, refetch } = useProductList();
@@ -11,7 +19,7 @@ export function useFilteredProducts() {
     const searchParams = useSearchParams();
 
     const q = searchParams.get('q') ?? '';
-    const category = searchParams.get('category') ?? '';
+    const sort = (searchParams.get('sort') ?? '') as SortOption;
 
     const setParam = useCallback(
         (key: string, value: string) => {
@@ -25,31 +33,42 @@ export function useFilteredProducts() {
     );
 
     const setQuery = useCallback((value: string) => setParam('q', value), [setParam]);
-    const setCategory = useCallback((value: string) => setParam('category', value), [setParam]);
+    const setSort = useCallback((value: SortOption) => setParam('sort', value), [setParam]);
 
-    const categories = useMemo(
-        () => Array.from(new Set(products.map((p) => p.category))).sort(),
-        [products]
-    );
-
-    const filtered = useMemo(() => {
+    const result = useMemo<ProductList>(() => {
         const qLower = q.trim().toLowerCase();
-        return products.filter((p) => {
-            const matchesCategory = !category || p.category === category;
-            const matchesQuery = !qLower || p.title.toLowerCase().includes(qLower);
-            return matchesCategory && matchesQuery;
-        });
-    }, [products, q, category]);
+        const filtered = products.filter(
+            (p) => !qLower || p.title.toLowerCase().includes(qLower)
+        );
+
+        if (!sort) return filtered;
+
+        const sorted = [...filtered];
+        switch (sort) {
+            case 'price-asc':
+                sorted.sort((a, b) => a.price - b.price);
+                break;
+            case 'price-desc':
+                sorted.sort((a, b) => b.price - a.price);
+                break;
+            case 'rating-asc':
+                sorted.sort((a, b) => a.rating.rate - b.rating.rate);
+                break;
+            case 'rating-desc':
+                sorted.sort((a, b) => b.rating.rate - a.rating.rate);
+                break;
+        }
+        return sorted;
+    }, [products, q, sort]);
 
     return {
-        products: filtered,
+        products: result,
         loading,
         error,
         refetch,
         q,
-        category,
-        categories,
+        sort,
         setQuery,
-        setCategory,
+        setSort,
     };
 }

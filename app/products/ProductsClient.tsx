@@ -16,10 +16,9 @@ export default function ProductsClient() {
         error,
         refetch,
         q,
-        category,
-        categories,
+        sort,
         setQuery,
-        setCategory,
+        setSort,
     } = useFilteredProducts();
     const router = useRouter();
     const addItem = useCartStore((s) => s.addItem);
@@ -33,10 +32,9 @@ export default function ProductsClient() {
 
             <ProductsFilters
                 q={q}
-                category={category}
-                categories={categories}
+                sort={sort}
                 onQueryChange={setQuery}
-                onCategoryChange={setCategory}
+                onSortChange={setSort}
             />
 
             {error && <ErrorBanner message={error} onRetry={refetch} />}
