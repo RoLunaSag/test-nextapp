@@ -13,3 +13,8 @@ export type CartItemRowProps = {
     onDecrement: () => void;
     onRemove: () => void;
 };
+
+export type ErrorBannerProps = {
+    message: string;
+    onRetry?: () => void;
+};
