@@ -1,10 +1,10 @@
 'use client';
 
-import Item from "@/src/components/item";
-import { getStaticProps } from "@/src/services/apiclient";
-import { Product } from "@/src/types/prodcut";
+import ProductCard from "@/components/ProductCard";
+import { getStaticProps } from "@/services/apiclient";
+import { Product } from "@/models/prodcut";
 import { useEffect, useState } from "react";
-import Navbar from "@/src/components/navbar";
+import Navbar from "@/components/navbar";
 import { useRouter } from "next/router";
 
 export default function Home() {
@@ -23,7 +23,7 @@ export default function Home() {
   const productListMap = () => {
     return products.map((product: Product) => (
       <button key={product.id} className="w-full" onClick={() => router.push(`/product/${product.id}`)}>
-        <Item product={product} />
+        <ProductCard product={product} />
       </button>
     ));
   };
