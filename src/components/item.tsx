@@ -1,6 +1,6 @@
 'use client';
 import Image from 'next/image'
-import { Product } from '@/src/types/prodcut'
+import { Product } from '@/types/prodcut';
 
 export default function Item({ product }: { product: Product }) {
     console.log(product)
